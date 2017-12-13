@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+body{
+	font-family: 'Raleway', sans-serif;
+}
+.myContainer{
+	width: 100%;
+}
+.pinkBg{
+	background: #313840;
+    height: 662px;
+    /*position: fixed;*/
+    left: 0;
+    top: 0;
+}
+.pinkBg h2{
+	 color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 31px;
+    font-weight: 700;
+    margin: 14% 0 9% 0;
+}
+.pinkBg .input-group{
+	margin-bottom: 12px;
+}
+.pinkBg .input-group-addon{
+	background: #22272a;
+	color: #fff;
+	border: 1px solid #22272a;
+}
+.radioBtn{
+	    width: 30px;
+    height: 19px;
+        position: relative;
+    top: -2px;
+}
+.pinkBg .blueBtn{
+	display: block;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 0;
+    padding: 14px;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 19px;
+    margin-top: 10%;
+    background: #00adeb;
+    text-transform: uppercase;
+    border-bottom: 3px solid #017ba7;
+}
+.colorCf244b{
+	    color: #22272a;
+    position: relative;
+    top: -7px;
+}
+.marginleft25{
+	margin-left: 25px;
+}
+.right_Sec{
+background: #e9e9e9;
+min-height: 662px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+th:nth-child(1){
+    width: 170px;
+}
+th:nth-child(2){
+    width: 140px;
+}
+th:nth-child(3){
+    width: 100px;
+}
+th:nth-child(4){
+    width: 100px;
+}
+th:nth-child(5){
+    width: 100px;
+}
+th:nth-child(6){
+    width: 170px;
+}
+th:nth-child(7){
+    width: 120px;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+th{
+    background: #313840;
+    color: #fff;
+    text-transform: uppercase;
+}
+.fa-eye, .fa-pencil, .fa-trash{
+    cursor: pointer;
+    padding: 4px 7px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.overlay{
+    position: fixed;
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+}
+.overlay-inner{
+    width: 750px;
+    height: 400px;
+    position: absolute;
+    /*transform: rotate(50%, 50%);*/
+    top: 0;
+    left: 0;
+    background:#313840;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -375px;
+    box-sizing: border-box;
+    padding: 50px;
+}
+.overlay-inner .row{
+    padding: 1% 0;
+}
+.close{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 30px;
+    color: #fff;
+}
+.pinkBg .hideit{
+    display: none;
+}

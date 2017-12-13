@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>student details</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+<div class="container myContainer">
+	<div class="row">
+		<div class="col-sm-4 pinkBg">
+			<h2>registration</h2>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+			  <input type="text" class="form-control" placeholder="Name" id="fullName" />
+			</div>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+			  <input type="text" class="form-control" placeholder="fathers Name" id="fathrName" />
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+					  <input type="date" class="form-control" placeholder="date of birth" id="dob" onchange="dateChange()" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">Age</span>
+					  <input type="text" class="form-control" id="age" readonly />
+					</div>
+				</div>
+			</div>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-users" aria-hidden="true"></i></span>
+			  <select class="form-control" placeholder="class" id="selectclassOpt" onchange="classNameChange()">
+			  	<option value="" disabled selected>Select class</option>
+			  </select>
+			</div>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-list-ol" aria-hidden="true"></i></span>
+			  <input type="text" class="form-control" placeholder="roll" id="rollNum" />
+			</div>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
+			  <span class="form-control" id="gender">
+			  	 	<span><i class="fa fa-male colorCf244b" aria-hidden="true"></i></span>
+				  <input type="radio" class="radioBtn" value="male" id="male" onClick="genderChange('male')" />
+				  <span class="marginleft25"><i class="fa fa-female colorCf244b" aria-hidden="true"></i></span>
+				  <input type="radio" class="radioBtn" value="female" checked id="female" onClick="genderChange('female')"/>
+			  </span>
+			</div>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+			  <input type="text" class="form-control" placeholder="address" id="address" />
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-industry" aria-hidden="true"></i>
+						</span>
+						<select class="form-control" placeholder="class" id="state" onchange="stateNameChange()">
+				  			<option value="" disabled selected>Select State</option>
+				  		</select>
+			  		</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">Pin</span>
+					  <input type="text" class="form-control" id="pincode" />
+					</div>
+				</div>
+			</div>
+			<div>
+					<button type="button" class="blueBtn" id="registeredBtn" onclick="registeredStudent()">Registered</button>
+					<button type="button" class="blueBtn hideit" data-childId="" id="updateBtn" onclick="updateChildDetails()">Update</button>
+			</div>
+		</div>
+		<!-- right section -->
+		<div class="col-sm-8 pull-right right_Sec">
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Fathers Name</th>
+			<th>D.O.B</th>
+			<th>Class</th>
+			<th>Gender</th>
+			<th>state</th>
+			<th>action</th>
+		</tr>
+	</thead>
+  <tbody id="main-table">
+			<!--
+			<tr id="shadab">
+					<td>Alfreds Futterkiste</td>
+					<td>Maria Anders</td>
+					<td>Germany</td>
+					<td>ten</td>
+					<td>Germany</td>
+					<td>Bihar</td>
+					<td class="allIcon">
+						<i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="show details"></i>
+						<i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="edit"></i>
+						<i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="delete"></i>
+					</td>
+				</tr> 
+			-->
+	</tbody>
+</table>
+		</div>
+	</div>
+</div>
+<!--------- popup box for show details-------------->
+<div class="overlay" id="overlay">
+	<div class="container overlay-inner">
+		<h1 class="stdntName">Mrs. Shadab Zilani</h1>
+		<div class="row">
+			<div class="col-sm-3">Father's Name - </div>
+			<div class="col-sm-9 fathrNam">Md Shallauddin</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3">Date of birth - </div>
+				<div class="col-sm-3 stdntDob">12-05-17</div>
+				<div class="col-sm-3">Age - </div>
+				<div class="col-sm-3 stdntAge">12</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3">Class - </div>
+				<div class="col-sm-3 sdntClass">Ten</div>
+				<div class="col-sm-3">Roll - </div>
+				<div class="col-sm-3 stdntRoll">12</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3">Gender - </div>
+				<div class="col-sm-9 stdntGendr">Male</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3">Adress - </div>
+				<div class="col-sm-9 stdntAddrs">j-25 Batla house jamia nagar Ohkla</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3">State - </div>
+				<div class="col-sm-3 stdntStat">Bihar</div>
+				<div class="col-sm-3">Pin Code - </div>
+				<div class="col-sm-3 stdntPin">811311</div>
+		</div>
+		<span class="close" onclick="hideDom('overlay')">X</span>
+	</div>
+</div>
+<script type="text/javascript" src="js/custom.js"></script>
+</body>
+</html>
