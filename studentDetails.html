@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 <title>student details</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -7,54 +7,68 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
-<div class="container myContainer">
+<div class="container myContainer" ng-controller="appController">
 	<div class="row">
 		<div class="col-sm-4 pinkBg">
+			<form name="myForm" novalidate>
 			<h2>registration</h2>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
-			  <input type="text" class="form-control" placeholder="Name" id="fullName" />
+			  <input type="text" class="form-control" name="name" placeholder="Name" ng-model="name" ng-pattern="/^[a-zA-Z ]*$/"/>
 			</div>
+			<!--<p ng-show="myForm.name.$dirty && myForm.name.$invalid">dirty - {{myForm.name.$dirty}}</p>-->
+			<p style="color:white;">
+				dirty - {{myForm.name.$dirty}} <br> 
+				invalid - {{myForm.name.$invalid}} <br> 
+				pristine - {{myForm.name.$pristine}}<br> 
+				length - {{!(!!name.length)}}<br> 
+				model - {{name}}</p>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-			  <input type="text" class="form-control" placeholder="fathers Name" id="fathrName" />
+			  <input type="text" class="form-control" placeholder="fathers Name" ng-model="fatherName" />
 			</div>
 			<div class="row">
 				<div class="col-sm-8">
 					<div class="input-group">
 					  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-					  <input type="date" class="form-control" placeholder="date of birth" id="dob" onchange="dateChange()" />
+					  <input type="date" class="form-control" placeholder="date of birth" ng-model="dob" ng-change="dateChange()" />
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group">
 					  <span class="input-group-addon" id="basic-addon1">Age</span>
-					  <input type="text" class="form-control" id="age" readonly />
+					  <input type="text" class="form-control" id="age" ng-model="age" readonly />
 					</div>
 				</div>
 			</div>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-users" aria-hidden="true"></i></span>
-			  <select class="form-control" placeholder="class" id="selectclassOpt" onchange="classNameChange()">
-			  	<option value="" disabled selected>Select class</option>
-			  </select>
+						<select 
+							class="form-control" 
+							placeholder="class" 
+							id="selectclassOpt" 
+							ng-options="item as item.class for item in classObj track by item.class" 
+							ng-model="selectClass"
+						>
+						</select>
+						<!--ng-options="item as item.class disable when item.notAnOption for item in classObj track by item.class"-->
 			</div>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-list-ol" aria-hidden="true"></i></span>
-			  <input type="text" class="form-control" placeholder="roll" id="rollNum" />
+			  <input type="text" class="form-control" placeholder="roll" ng-model="roll" />
 			</div>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
-			  <span class="form-control" id="gender">
-			  	 	<span><i class="fa fa-male colorCf244b" aria-hidden="true"></i></span>
-				  <input type="radio" class="radioBtn" value="male" id="male" onClick="genderChange('male')" />
+			  <span class="form-control">
+			  	<span><i class="fa fa-male colorCf244b" aria-hidden="true"></i></span>
+				  <input type="radio" class="radioBtn" value="male" ng-model="gender" />
 				  <span class="marginleft25"><i class="fa fa-female colorCf244b" aria-hidden="true"></i></span>
-				  <input type="radio" class="radioBtn" value="female" checked id="female" onClick="genderChange('female')"/>
+				  <input type="radio" class="radioBtn" value="female" ng-model="gender"/>
 			  </span>
 			</div>
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-			  <input type="text" class="form-control" placeholder="address" id="address" />
+			  <input type="text" class="form-control" placeholder="address" ng-model="address" />
 			</div>
 			<div class="row">
 				<div class="col-sm-8">
@@ -62,25 +76,33 @@
 						<span class="input-group-addon" id="basic-addon1">
 							<i class="fa fa-industry" aria-hidden="true"></i>
 						</span>
-						<select class="form-control" placeholder="class" id="state" onchange="stateNameChange()">
-				  			<option value="" disabled selected>Select State</option>
-				  		</select>
+							<select 
+							class="form-control" 
+							placeholder="class" 
+							id="selectclassOpt" 
+							ng-options="item1 as item1.state for item1 in stateName track by item1.state" 
+							ng-model="selectState"
+							ng-change="stateChange()"
+						>
+						</select>
 			  		</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group">
 					  <span class="input-group-addon" id="basic-addon1">Pin</span>
-					  <input type="text" class="form-control" id="pincode" />
+					  <input type="text" class="form-control" ng-model="pinCode" id="pinCode" />
 					</div>
 				</div>
 			</div>
 			<div>
-					<button type="button" class="blueBtn" id="registeredBtn" onclick="registeredStudent()">Registered</button>
-					<button type="button" class="blueBtn hideit" data-childId="" id="updateBtn" onclick="updateChildDetails()">Update</button>
+					<button type="button" class="blueBtn" id="registeredBtn" ng-click="final()">Registered</button>
+					<button type="button" class="blueBtn hideit" data-childId="" id="updateBtn">Update</button>
 			</div>
+			</form>
 		</div>
 		<!-- right section -->
 		<div class="col-sm-8 pull-right right_Sec">
+			{{allRegisteredStudents}}
 <table>
 	<thead>
 		<tr>
@@ -94,7 +116,7 @@
 		</tr>
 	</thead>
   <tbody id="main-table">
-			<!--
+			
 			<tr id="shadab">
 					<td>Alfreds Futterkiste</td>
 					<td>Maria Anders</td>
@@ -107,8 +129,23 @@
 						<i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="edit"></i>
 						<i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="delete"></i>
 					</td>
-				</tr> 
-			-->
+				</tr>
+
+				<tr ng-repeat="student in allRegisteredStudents">
+						<td>{{student.name}}</td>
+						<td>{{student.fatherName}}</td>
+						<td>{{student.dob}}</td>
+						<td>{{student.class}}</td>
+						<td>{{student.gender}}</td>
+						<td>{{student.state}}</td>
+						<td class="allIcon">
+							<i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="show details" ng-click="view(student)"></i>
+							<i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="edit" ng-click="edit(student)"></i>
+							<i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="delete" ng-click="remove(student)"></i>
+						</td>
+					</tr>
+
+			
 	</tbody>
 </table>
 		</div>
@@ -148,9 +185,13 @@
 				<div class="col-sm-3">Pin Code - </div>
 				<div class="col-sm-3 stdntPin">811311</div>
 		</div>
-		<span class="close" onclick="hideDom('overlay')">X</span>
+		<span class="close">X</span>
 	</div>
 </div>
+
+<script type="text/javascript" src="js/angular/angular.min.js"></script>
+<script type="text/javascript" src="js/angular/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="js/service/getAge-service.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 </body>
 </html>
